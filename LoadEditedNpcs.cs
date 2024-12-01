@@ -41,9 +41,11 @@ public static class LoadEditedNpcs {
 		for (var i = 0; i < characterMgr.GetStockMaidCount(); i++) {
 			var stockMaid = characterMgr.GetStockMaid(i);
 			if (stockMaid?.status.heroineType == HeroineType.Sub && stockMaid?.status.subCharaData?.uniqueName == npcName) {
-				var maidIndex = tag_data.GetTagProperty("maid").AsInteger();
-				characterMgr.SetActiveMaid(stockMaid, maidIndex);
-				maid = stockMaid;
+				if (stockMaid.ActiveSlotNo < 0) {
+					var maidIndex = tag_data.GetTagProperty("maid").AsInteger();
+					characterMgr.SetActiveMaid(stockMaid, maidIndex);
+					maid = stockMaid;
+				}
 				break;
 			}
 		}
