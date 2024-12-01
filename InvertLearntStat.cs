@@ -12,7 +12,7 @@ public static class InvertLearntStat {
 	}
 
 	public static void Unload() {
-		_instance.UnpatchAll(_instance.Id);
+		_instance?.UnpatchSelf();
 		_instance = null;
 	}
 

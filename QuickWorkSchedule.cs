@@ -13,7 +13,7 @@ public static class QuickWorkSchedule {
 	}
 
 	public static void Unload() {
-		_instance.UnpatchAll(_instance.Id);
+		_instance?.UnpatchSelf();
 		_instance = null;
 	}
 
@@ -28,14 +28,14 @@ public static class QuickWorkSchedule {
 
 		var facilityManager = GameMain.Instance.FacilityMgr;
 		var descScheduleWork = (DescScheduleWork)__instance.descDic[ScheduleTaskCtrl.TaskType.Work];
-		var nextDayFacilities = facilityManager.GetNextDayFacilityArray();
+		var pendingFacilities = facilityManager.GetNextDayFacilityArray();
 
 		facilityManager.UpdateFacilityAssignedMaidData();
 
 		var facility = facilityManager.GetFacilityArray()
 			.Where(e => e != null)
 			.Where(e => e.defaultData.ID == descScheduleWork.work_data.facility.ID)
-			.Where(e => !nextDayFacilities.ContainsValue(e))
+			.Where(e => !pendingFacilities.ContainsValue(e))
 			.SingleOrDefault();
 
 		if (facility == null) {

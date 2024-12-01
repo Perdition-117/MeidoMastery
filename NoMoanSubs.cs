@@ -12,7 +12,7 @@ public static class NoMoanSubs {
 	}
 
 	public static void Unload() {
-		_instance.UnpatchAll(_instance.Id);
+		_instance?.UnpatchSelf();
 		_instance = null;
 	}
 

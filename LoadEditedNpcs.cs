@@ -14,10 +14,8 @@ public static class LoadEditedNpcs {
 	}
 
 	public static void Unload() {
-		if (_instance != null) {
-			_instance.UnpatchAll(_instance.Id);
-			_instance = null;
-		}
+		_instance?.UnpatchSelf();
+		_instance = null;
 	}
 
 	[HarmonyPrefix]
