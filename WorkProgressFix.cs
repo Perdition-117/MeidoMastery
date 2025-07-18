@@ -5,25 +5,31 @@
 using System;
 using HarmonyLib;
 using Schedule;
+using UnityEngine.SceneManagement;
 
 public static class WorkProgressFix {
 	private static Harmony _instance;
-	private static Harmony _bootstrapInstance;
 
 	public static void Main() {
 		// patching NoonWorkPlayExpRatio invokes static ScheduleCSVData ctor too early
-		if (GameUty.FileSystem == null) {
-			_bootstrapInstance = Harmony.CreateAndPatchAll(typeof(BootstrapPatch));
-		} else {
+		if (GameMain.Instance.GetNowSceneName() == "SceneDaily") {
 			_instance = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
+		} else {
+			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
 	}
 
 	public static void Unload() {
 		_instance?.UnpatchSelf();
 		_instance = null;
-		_bootstrapInstance?.UnpatchSelf();
-		_bootstrapInstance = null;
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
+
+	public static void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode) {
+		if (scene.name == "SceneDaily") {
+			_instance = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
+			SceneManager.sceneLoaded -= OnSceneLoaded;
+		}
 	}
 
 	// fixes level 2 progress displaying half of actual value
@@ -48,13 +54,5 @@ public static class WorkProgressFix {
 	private static bool ScheduleTraining_expRatioFrom0To10(ScheduleTraining __instance, ref int __result) {
 		__result = (int)Math.Round((double)(__instance.expRatio * 10f));
 		return false;
-	}
-
-	class BootstrapPatch {
-		[HarmonyPostfix]
-		[HarmonyPatch(typeof(GameUty), nameof(GameUty.Init))]
-		private static void Init() {
-			_instance = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
-		}
 	}
 }
