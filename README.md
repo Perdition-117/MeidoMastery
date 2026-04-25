@@ -8,4 +8,5 @@ A collection of minor tweaks for Custom Order Maid 3D2.
 - **PresetFilenameFormatter** - Separates date and time components in saved preset file names.
 - **QuickWorkSchedule** - Skips facility selection when scheduling work if only one eligible facility is available.
 - **SoftReset** - Allows instantly returning to title screen by pressing Ctrl-Shift-R.
+- **TitleBarFix** - Fixes message popup position on screens wider than 1920 pixels.
 - **WorkProgressFix** - Fixes displayed work progression on schedule screen.
