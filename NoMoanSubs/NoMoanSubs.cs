@@ -1,24 +1,19 @@
-// #name NoMoanSubs
-// #author Perdition
-// #desc Hides subtitles for yotogi moaning loops.
-
+using BepInEx;
 using HarmonyLib;
 
-public static class NoMoanSubs {
-	private static Harmony _instance;
+namespace NoMoanSubs;
 
-	public static void Main() {
-		_instance = Harmony.CreateAndPatchAll(typeof(NoMoanSubs));
-	}
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+class NoMoanSubs : BaseUnityPlugin {
+	private readonly Harmony _harmony = Harmony.CreateAndPatchAll(typeof(NoMoanSubs));
 
-	public static void Unload() {
-		_instance?.UnpatchSelf();
-		_instance = null;
+	private void OnDestroy() {
+		_harmony?.UnpatchSelf();
 	}
 
 	[HarmonyPrefix]
 	[HarmonyPatch(typeof(YotogiPlayManager), nameof(YotogiPlayManager.AddRepeatVoiceText))]
-	private static bool YotogiPlayManager_AddRepeatVoiceText(SceneScenarioSelect __instance) {
+	private static bool YotogiPlayManager_AddRepeatVoiceText() {
 		return false;
 	}
 }

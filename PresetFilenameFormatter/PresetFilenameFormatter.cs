@@ -1,22 +1,17 @@
-// #name PresetFilenameFormatter
-// #author Perdition
-// #desc Separates date and time components in saved preset file names.
-
 using System;
 using System.Collections.Generic;
 using System.Reflection.Emit;
+using BepInEx;
 using HarmonyLib;
 
-public static class PresetFilenameFormatter {
-	private static Harmony _instance;
+namespace PresetFilenameFormatter;
 
-	public static void Main() {
-		_instance = Harmony.CreateAndPatchAll(typeof(PresetFilenameFormatter));
-	}
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+class PresetFilenameFormatter : BaseUnityPlugin {
+	private readonly Harmony _harmony = Harmony.CreateAndPatchAll(typeof(PresetFilenameFormatter));
 
-	public static void Unload() {
-		_instance?.UnpatchSelf();
-		_instance = null;
+	private void OnDestroy() {
+		_harmony?.UnpatchSelf();
 	}
 
 	private static string GetPresetName(Maid maid) {

@@ -1,19 +1,14 @@
-// #name InvertLearntStat
-// #author Perdition
-// #desc Inverts the Learnt maid stat so it goes from 0 to 100%.
-
+using BepInEx;
 using HarmonyLib;
 
-public static class InvertLearntStat {
-	private static Harmony _instance;
+namespace InvertLearntStat;
 
-	public static void Main() {
-		_instance = Harmony.CreateAndPatchAll(typeof(InvertLearntStat));
-	}
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+class InvertLearntStat : BaseUnityPlugin {
+	private readonly Harmony _harmony = Harmony.CreateAndPatchAll(typeof(InvertLearntStat));
 
-	public static void Unload() {
-		_instance?.UnpatchSelf();
-		_instance = null;
+	private void OnDestroy() {
+		_harmony?.UnpatchSelf();
 	}
 
 	[HarmonyPostfix]

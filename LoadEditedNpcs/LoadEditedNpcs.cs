@@ -1,21 +1,16 @@
-// #name LoadEditedNpcs
-// #author Perdition
-// #desc Forces unique and extra maids to use edited appearance instead of default preset in events.
-
 using System.Collections.Generic;
+using BepInEx;
 using HarmonyLib;
 using MaidStatus;
 
-public static class LoadEditedNpcs {
-	private static Harmony _instance;
+namespace LoadEditedNpcs;
 
-	public static void Main() {
-		_instance = Harmony.CreateAndPatchAll(typeof(LoadEditedNpcs));
-	}
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+class LoadEditedNpcs : BaseUnityPlugin {
+	private readonly Harmony _harmony = Harmony.CreateAndPatchAll(typeof(LoadEditedNpcs));
 
-	public static void Unload() {
-		_instance?.UnpatchSelf();
-		_instance = null;
+	private void OnDestroy() {
+		_harmony?.UnpatchSelf();
 	}
 
 	[HarmonyPrefix]

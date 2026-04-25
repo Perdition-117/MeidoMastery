@@ -1,33 +1,32 @@
-// #name WorkProgressFix
-// #author Perdition
-// #desc Fixes displayed work progression on schedule screen.
-
 using System;
+using BepInEx;
 using HarmonyLib;
 using Schedule;
 using UnityEngine.SceneManagement;
 
-public static class WorkProgressFix {
-	private static Harmony _instance;
+namespace WorkProgressFix;
 
-	public static void Main() {
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+class WorkProgressFix : BaseUnityPlugin {
+	private Harmony _harmony;
+
+	private WorkProgressFix() {
 		// patching NoonWorkPlayExpRatio invokes static ScheduleCSVData ctor too early
 		if (GameMain.Instance.GetNowSceneName() == "SceneDaily") {
-			_instance = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
+			_harmony = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
 		} else {
 			SceneManager.sceneLoaded += OnSceneLoaded;
 		}
 	}
 
-	public static void Unload() {
-		_instance?.UnpatchSelf();
-		_instance = null;
+	private void OnDestroy() {
+		_harmony?.UnpatchSelf();
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 
-	public static void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode) {
+	private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode) {
 		if (scene.name == "SceneDaily") {
-			_instance = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
+			_harmony = Harmony.CreateAndPatchAll(typeof(WorkProgressFix));
 			SceneManager.sceneLoaded -= OnSceneLoaded;
 		}
 	}

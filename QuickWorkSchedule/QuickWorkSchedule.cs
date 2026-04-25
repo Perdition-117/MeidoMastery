@@ -1,20 +1,15 @@
-// #name QuickWorkSchedule
-// #author Perdition
-// #desc Skips facility selection when scheduling work if only one relevant facility exists.
-
 using System.Linq;
+using BepInEx;
 using HarmonyLib;
 
-public static class QuickWorkSchedule {
-	private static Harmony _instance;
+namespace QuickWorkSchedule;
 
-	public static void Main() {
-		_instance = Harmony.CreateAndPatchAll(typeof(QuickWorkSchedule));
-	}
+[BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+class QuickWorkSchedule : BaseUnityPlugin {
+	private readonly Harmony _harmony = Harmony.CreateAndPatchAll(typeof(QuickWorkSchedule));
 
-	public static void Unload() {
-		_instance?.UnpatchSelf();
-		_instance = null;
+	private void OnDestroy() {
+		_harmony?.UnpatchSelf();
 	}
 
 	[HarmonyPrefix]
