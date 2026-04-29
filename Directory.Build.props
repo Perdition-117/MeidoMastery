@@ -1,0 +1,28 @@
+<Project>
+	<PropertyGroup>
+		<Version>1.0.0</Version>
+		<Authors>Perdition</Authors>
+		<PackageProjectUrl>https://github.com/Perdition-117/MeidoMastery</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Perdition-117/MeidoMastery.git</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<TargetFramework>net35</TargetFramework>
+		<LangVersion>10</LangVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<BaseOutputPath>..\artifacts\</BaseOutputPath>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<UseCommonOutputDirectory>true</UseCommonOutputDirectory>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BepInEx.BaseLib" Version="5.4.21" />
+		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
+		<PackageReference Include="COM3D2.GameLibs" Version="2.44.1-r.0" />
+		<PackageReference Include="HarmonyX" Version="2.10.2" />
+		<PackageReference Include="UnityEngine" Version="5.6.1" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="InvertLearntStats/InvertLearntStat.csproj" />
+  <Project Path="LoadEditedNpcs/LoadEditedNpcs.csproj" />
+  <Project Path="NoMoanSubs/NoMoanSubs.csproj" />
+  <Project Path="PresetFilenameFormatter/PresetFilenameFormatter.csproj" />
+  <Project Path="QuickWorkSchedule/QuickWorkSchedule.csproj" />
+  <Project Path="SoftReset/SoftReset.csproj" />
+  <Project Path="TitleBarFix/TitleBarFix.csproj" />
+  <Project Path="WorkProgressFix/WorkProgressFix.csproj" />
+</Solution>

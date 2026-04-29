@@ -10,3 +10,7 @@ A collection of minor tweaks for Custom Order Maid 3D2.
 - **SoftReset** - Allows instantly returning to title screen by pressing Ctrl-Shift-R.
 - **TitleBarFix** - Fixes message popup position on screens wider than 1920 pixels.
 - **WorkProgressFix** - Fixes displayed work progression on schedule screen.
+
+## Install
+
+Download the latest version from [the release page](../../releases/latest). Extract the archive contents into the root of your game directory.
