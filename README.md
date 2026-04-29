@@ -2,6 +2,7 @@
 
 A collection of minor tweaks for Custom Order Maid 3D2.
 
+- **DialogueNameColor** - Colorizes name labels in dialogue window.
 - **InvertLearntStat** - Inverts the Learnt maid stat so it goes from 0 to 100%.
 - **LoadEditedNpcs** - Forces unique and extra maids to use edited appearance instead of default preset in events.
 - **NoMoanSubs** - Hides subtitles for yotogi moaning loops.
