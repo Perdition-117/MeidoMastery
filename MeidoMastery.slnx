@@ -4,6 +4,7 @@
   <Project Path="LoadEditedNpcs/LoadEditedNpcs.csproj" />
   <Project Path="NoMoanSubs/NoMoanSubs.csproj" />
   <Project Path="NoTheatreDance/NoTheatreDance.csproj" />
+  <Project Path="NumberOne/NumberOne.csproj" />
   <Project Path="PolePosition/PolePosition.csproj" />
   <Project Path="PresetFilenameFormatter/PresetFilenameFormatter.csproj" />
   <Project Path="QuickWorkSchedule/QuickWorkSchedule.csproj" />
