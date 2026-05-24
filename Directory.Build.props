@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<Version>1.0.0</Version>
+		<Version>1.0.1</Version>
 		<Authors>Perdition</Authors>
 		<PackageProjectUrl>https://github.com/Perdition-117/MeidoMastery</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/Perdition-117/MeidoMastery.git</RepositoryUrl>
